@@ -1,0 +1,41 @@
+.App {
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.error {
+  color:#db2269;
+  font-size: 0.625em;
+}
+
+.form-group {
+  /*display: flex;*/
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+/*input {*/
+/*  padding: 10px 10px;*/
+/*  border-radius: 5px;*/
+/*  outline: none;*/
+/*  border: 1px solid #d6d1d5;*/
+/*}*/
+
+input::placeholder {
+  /*font-size: 1.2em;*/
+  font-weight: lighter;
+  color: #bbb;
+}

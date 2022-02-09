@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  micro_backend:
+    build: test_backend
+    container_name: micro_test_backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db_postgres_test_micro/testdb_form
+    ports:
+      - "8085:8085"
+    depends_on:
+      - db_postgres_micro
+
+  micro_frontend:
+    build: test_frontend
+    container_name: micro_test_frontend
+    ports:
+      - "8086:8086"
+
+  db_postgres_micro:
+    image: postgres:latest
+    container_name: db_postgres_test_micro
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data_micro:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=testdb_form
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+
+  pgadmin_micro:
+    image: dpage/pgadmin4
+    container_name: test_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pg_admin_micro:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+
+volumes:
+  db_data_micro:
+  pg_admin_micro:
